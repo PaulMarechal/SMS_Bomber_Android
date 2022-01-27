@@ -2,6 +2,7 @@
 
 ## SMS Bomber en Java pour téléphone Android 
 
+- Page d'accueil 
 - Gestion d'onglets 
 - Liste de contact 
 - Envoi de SMS ( READ_PHONE; READ_SMS; SEND_SMS ) 
