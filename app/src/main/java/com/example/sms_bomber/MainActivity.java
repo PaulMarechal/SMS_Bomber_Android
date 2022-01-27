@@ -5,15 +5,13 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
     private SectionsPageAdapter mSectionsPageAdapter;
-
     private ViewPager mViewPager;
 
     @Override

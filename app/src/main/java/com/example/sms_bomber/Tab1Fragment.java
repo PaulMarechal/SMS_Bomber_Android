@@ -1,5 +1,6 @@
 package com.example.sms_bomber;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.concurrent.RejectedExecutionException;
 
 public class Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
@@ -29,5 +32,7 @@ public class Tab1Fragment extends Fragment {
         });
 
         return view;
+
+        
     }
 }
