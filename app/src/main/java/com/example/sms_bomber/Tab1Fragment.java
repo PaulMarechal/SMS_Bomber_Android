@@ -17,19 +17,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 // extends Fragment
-public class Tab1Fragment extends AppCompatActivity {
+public class Tab1Fragment extends Fragment {
 
     //private ContentResolver contentResolver;
+    private class TabFragment1 extends AppCompatActivity{
+        ContentResolver contentResolver = this.getContentResolver();
+    }
 
     @Nullable
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState, Fragment fragment) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState, AppCompatActivity appCompatActivity) {
         View view = inflater.inflate(R.layout.contacts_fragment, container, false);
 
         // acces au contenu du mobile
-        ContentResolver contentResolver = this.getContentResolver();
+        //ContentResolver contentResolver = this.getContentResolver();
 
-        // Récup des contacts dans un curseur
-        Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+        TabFragment1 tabFragment1 = new TabFragment1();
+        ContentResolver contentRe = tabFragment1.contentResolver;
+
+        // Récup des contacts dans un curseur 
+        Cursor cursor = contentRe.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE,
                         ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null);
 
@@ -52,6 +58,7 @@ public class Tab1Fragment extends AppCompatActivity {
         //recupContacts();
         return view;
     }
+
 
 
     //@SuppressLint("SetTextI18n")
