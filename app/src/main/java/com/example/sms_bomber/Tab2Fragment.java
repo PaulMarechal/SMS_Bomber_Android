@@ -1,5 +1,7 @@
 package com.example.sms_bomber;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -7,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 public class Tab2Fragment extends Fragment {
@@ -35,7 +39,12 @@ public class Tab2Fragment extends Fragment {
     private void createOnClickEnvoiButton(){
         envoi.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
-                SmsManager.getDefault().sendTextMessage(phone.getText().toString(), null, message.getText().toString(), null, null);
+                // controle si permission
+                //if(ActivityCompat.checkSelfPermission(null, Manifest.permission.SEND_SMS ) == PackageManager.PERMISSION_GRANTED){
+                    SmsManager.getDefault().sendTextMessage(phone.getText().toString(), null, message.getText().toString(), null, null);
+                    // Message si sms envoye
+                    //Toast.makeText(null, "SMS envoyé", Toast.LENGTH_SHORT).show();
+                //}
             }
         });
     }
