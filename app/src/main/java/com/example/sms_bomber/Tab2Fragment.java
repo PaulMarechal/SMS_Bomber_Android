@@ -20,6 +20,7 @@ public class Tab2Fragment extends Fragment {
 
     private EditText phone;
     private EditText message;
+    private EditText nombreMgs;
     private Button envoi;
 
     @Nullable
@@ -30,9 +31,18 @@ public class Tab2Fragment extends Fragment {
         phone = (EditText) view.findViewById(R.id.txtPhone);
         message = (EditText) view.findViewById(R.id.txtMessage);
         envoi = (Button) view.findViewById(R.id.btnEnvoi);
+        nombreMgs = (EditText) view.findViewById(R.id.nombreMgs);
+
+
 
         // gestion de l'event click sur le bouton envoi
+        //for(int i = 0; i <= nombreMessagesEnvoi; i++){
+        //    createOnClickEnvoiButton();
+        //}
+
         createOnClickEnvoiButton();
+
+
 
         return view;
     }
@@ -42,7 +52,14 @@ public class Tab2Fragment extends Fragment {
             public void onClick(View v){
                 // controle si permission
                 //if(ActivityCompat.checkSelfPermission(null, Manifest.permission.SEND_SMS ) == PackageManager.PERMISSION_GRANTED){
-                    SmsManager.getDefault().sendTextMessage(phone.getText().toString(), null, message.getText().toString(), null, null);
+                    String nombreMessagesInput = nombreMgs.getText().toString();
+                    int nombreMessagesEnvoi= Integer.parseInt(nombreMessagesInput);
+
+                    for(int i = 0; i <= nombreMessagesEnvoi; i++ ){
+                        SmsManager.getDefault().sendTextMessage(phone.getText().toString(), null, message.getText().toString(), null, null);
+
+                    }
+                    //SmsManager.getDefault().sendTextMessage(phone.getText().toString(), null, message.getText().toString(), null, null);
                     // Message si sms envoye
                     //Toast.makeText(null, "SMS envoyé", Toast.LENGTH_SHORT).show();
                 //}

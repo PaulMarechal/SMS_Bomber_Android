@@ -27,12 +27,29 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de messages : "
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="30dp"/>
+
+
+    <EditText
+        android:id="@+id/nombreMgs"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:inputType="phone"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="265dp"/>
+
     <Button
         android:id="@+id/btnEnvoi"
         android:layout_width="190dp"
         android:layout_height="50dp"
         android:text="Envoi "
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp" />
+        android:layout_marginTop="340dp" />
 
 </RelativeLayout>
