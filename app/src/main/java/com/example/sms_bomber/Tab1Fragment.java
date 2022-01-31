@@ -11,38 +11,41 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-// extends Fragment
 public class Tab1Fragment extends Fragment {
 
-    //private ContentResolver contentResolver;
-    private class TabFragment1 extends AppCompatActivity{
-        ContentResolver contentResolver = this.getContentResolver();
-    }
+    private static final String TAG = "Tab1Fragment";
 
     @Nullable
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState, AppCompatActivity appCompatActivity) {
-        View view = inflater.inflate(R.layout.contacts_fragment, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.contacts_fragment,container,false);
 
-        // acces au contenu du mobile
-        //ContentResolver contentResolver = this.getContentResolver();
+        return view;
+    }
 
-        TabFragment1 tabFragment1 = new TabFragment1();
-        ContentResolver contentRe = tabFragment1.contentResolver;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        this.recupContacts();
+    }
 
-        // Récup des contacts dans un curseur 
-        Cursor cursor = contentRe.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+    public void recupContacts() {
+        ContentResolver contentResolver = getContext().getContentResolver();
+
+        // Récup des contacts dans un curseur
+        Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE,
                         ContactsContract.CommonDataKinds.Phone.NUMBER}, null, null, null);
 
         if (cursor == null) {
             Log.d("recuperation", "*************** erreur cursor ********************");
         } else {
-            EditText txtContacts = (EditText) view.findViewById(R.id.txtContacts);
+            EditText txtContacts = (EditText) getView().findViewById(R.id.txtContacts);
             // Parcours des contacts
             while (cursor.moveToNext()) {
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE));
@@ -55,9 +58,12 @@ public class Tab1Fragment extends Fragment {
             // fermer le curseur
             cursor.close();
         }
-        //recupContacts();
-        return view;
     }
+}
+
+
+
+
 
 
 
@@ -88,7 +94,7 @@ public class Tab1Fragment extends Fragment {
     //    cursor.close();
     // }
     // }
-}
+
 
 //public ContentResolver getContentResolver() {
 //    return mContentResolver;
